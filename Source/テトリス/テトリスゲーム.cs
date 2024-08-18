@@ -26,7 +26,7 @@ namespace テトリス
         public void Start()
         {
             タイマー.Start();
-            if (落ちてるブロック == null) 落ちてるブロック = CreateBlock();
+            if (落ちてるブロック == null) 落ちてるブロック = テトリミノ作成();
         }
 
         public void Dispose() 
@@ -130,7 +130,7 @@ namespace テトリス
                         break;
                 }
 
-                var 次のブロック = CreateBlock();
+                var 次のブロック = テトリミノ作成();
                 if (次のブロック.背景にぶつかってるか(背景))
                 {
                     タイマー.Dispose();
@@ -161,9 +161,8 @@ namespace テトリス
             通知();
         }
 
-        static テトリミノBase CreateBlock()
+        static テトリミノBase テトリミノ作成()
         {
-
             switch (乱数.Next(1, 8))
             {
                 case 1: return new Lミノ { X = 4 };
@@ -173,7 +172,6 @@ namespace テトリス
                 case 5: return new Iミノ { X = 4 };
                 case 6: return new Sブロック { X = 4 };
                 case 7: return new Zブロック { X = 4 };
-
             }
             return new Sブロック { X = 4 };
         }
